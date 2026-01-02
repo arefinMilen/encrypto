@@ -1,11 +1,11 @@
-import { streamText, UIMessage, convertToModelMessages } from 'ai';
-import { yourProvider } from "your-custom-provider";
+import { streamText, UIMessage, convertToModelMessages } from "ai";
+import { openai } from "@ai-sdk/openai";
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
-    model: yourProvider("your-model-id"),
+    model: openai("gpt-4-turbo"),
     messages: await convertToModelMessages(messages),
   });
 
